@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EbookApp">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
+            android:theme="@style/Theme.EbookApp.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

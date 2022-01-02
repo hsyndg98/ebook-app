@@ -4,23 +4,30 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
-import com.example.ebookapp.data.model.User;
-import com.example.ebookapp.repository.UserRepository;
-
-import java.util.List;
+import com.example.ebookapp.auth.FirebaseLogin;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterViewModel extends AndroidViewModel {
-    private UserRepository mRepository;
-
+    private FirebaseLogin fRegister;
+    private MutableLiveData<FirebaseUser> userLiveData;
 
     public RegisterViewModel(@NonNull Application application) {
         super(application);
-        mRepository = new UserRepository(application);
+        fRegister = new FirebaseLogin(application);
+        userLiveData = fRegister.getUserLiveData();
     }
 
-    public void insert(User user) {
-        mRepository.insert(user);
+    public void login(String email, String password) {
+        fRegister.login(email, password);
+    }
+
+    public void register(String email, String password) {
+        fRegister.register(email, password);
+    }
+
+    public MutableLiveData<FirebaseUser> getUserLiveData() {
+        return userLiveData;
     }
 }

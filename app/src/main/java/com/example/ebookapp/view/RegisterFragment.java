@@ -33,7 +33,9 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if (firebaseUser != null) {
-                    Navigation.findNavController(getView()).navigate(R.id.action_registerFragment_to_loginFragment);
+                    //Navigation.findNavController(getView()).navigate(R.id.);
+
+                    Toast.makeText(getContext(),"Bu eMail adresi ile zaten kayıt yaptırılmış.",Toast.LENGTH_SHORT).show();
                 }
             }
         });

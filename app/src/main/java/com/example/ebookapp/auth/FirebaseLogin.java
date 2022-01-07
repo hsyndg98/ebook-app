@@ -23,6 +23,8 @@ public class FirebaseLogin {
     private MutableLiveData<FirebaseUser> userLiveData;
     private MutableLiveData<Boolean> loggedOutLiveData;
 
+
+
     //Constructor func.
     public FirebaseLogin(Application application){
 
@@ -37,6 +39,20 @@ public class FirebaseLogin {
             userLiveData.postValue(mAuth.getCurrentUser());
             loggedOutLiveData.postValue(false);
         }
+
+    }
+
+    //This function adds user to realtime db.
+    public void add_user_to_realtime_db(String fullname,String email,String uid){
+
+        try {
+            mRealtimeDB.getReference().child("users").child(uid).child("Fullname").setValue(fullname);
+            mRealtimeDB.getReference().child("users").child(uid).child("Email").setValue(email);
+
+        }catch (NullPointerException exception){
+            Toast.makeText(application.getApplicationContext(), "Kullanıcının hesabı açılamadı " + exception.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
 
     }
 

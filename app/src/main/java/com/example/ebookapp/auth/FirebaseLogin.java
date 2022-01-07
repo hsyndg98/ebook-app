@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseLogin {
 
@@ -23,7 +24,7 @@ public class FirebaseLogin {
     private MutableLiveData<FirebaseUser> userLiveData;
     private MutableLiveData<Boolean> loggedOutLiveData;
 
-
+    private FirebaseDatabase mRealtimeDB;
 
     //Constructor func.
     public FirebaseLogin(Application application){
@@ -33,6 +34,7 @@ public class FirebaseLogin {
         this.mAuth = FirebaseAuth.getInstance();
         this.userLiveData = new MutableLiveData<>();
         this.loggedOutLiveData = new MutableLiveData<>();
+        this.mRealtimeDB = FirebaseDatabase.getInstance();
 
         //If user has logged the system, user uid will add the userLiveData array.
         if(mAuth.getCurrentUser() != null){

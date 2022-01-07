@@ -52,7 +52,6 @@ public class LoginFragment extends Fragment {
                 String sifre = binding.etPassword.getText().toString().trim();
 
 
-
             }
         });
 

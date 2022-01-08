@@ -48,12 +48,12 @@ public class HomePageFragment extends Fragment {
 
 
         List<Book> thriller = new ArrayList<>();
-        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği"));
-        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal"));
-        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği"));
-        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal"));
-        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği"));
-        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal"));
+        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği","Elif Akay"));
+        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal","Elif Akay"));
+        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği","Elif Akay"));
+        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal","Elif Akay"));
+        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği","Elif Akay"));
+        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal","Elif Akay"));
 
 
         List<Category> categoryList = new ArrayList<>();

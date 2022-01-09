@@ -1,16 +1,26 @@
 package com.example.ebookapp.viewmodel;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.example.ebookapp.LocalDB.model.BookModel;
 import com.example.ebookapp.R;
 
 import java.util.List;
@@ -18,9 +28,9 @@ import java.util.List;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder>{
 
     private Context mContext;
-    private List<Book> bookList;
+    private List<BookModel> bookList;
 
-    public BookAdapter(Context mContext, List<Book> bookList) {
+    public BookAdapter(Context mContext, List<BookModel> bookList) {
         this.mContext = mContext;
         this.bookList = bookList;
     }
@@ -35,6 +45,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             this.bookImage = itemView.findViewById(R.id.imageViewBookCardBookImage);
             this.bookName = itemView.findViewById(R.id.textViewBookCardBookName);
             this.buttonLook = itemView.findViewById(R.id.buttonBookCardLook);
+
         }
     }
 
@@ -46,9 +57,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        holder.bookImage.setImageResource(bookList.get(position).getImageUrl());
-        holder.bookName.setText(bookList.get(position).getBookName());
+        Glide.with(mContext)
+                .load(bookList
+                        .get(position)
+                        .getResim())
+                .into(holder.bookImage);
+        holder.bookName.setText(bookList.get(position).getKitap());
+        holder.buttonLook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Navigation.findNavController(view).navigate(R.id.action_homePageFragment_to_bookDetailsFragment);
+            }
+        });
     }
 
     @Override

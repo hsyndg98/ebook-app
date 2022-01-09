@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.ebookapp.auth.FirebaseLogin;
+import com.example.ebookapp.RemoteDB.FirebaseLogin;
 import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterViewModel extends AndroidViewModel {
@@ -18,6 +18,9 @@ public class RegisterViewModel extends AndroidViewModel {
         fRegister = new FirebaseLogin(application);
         userLiveData = fRegister.getUserLiveData();
     }
+
+
+    public void add_user_to_realtimeDB(String fullname,String mail, String uid){ fRegister.add_user_to_realtime_db(fullname,mail,uid); }
 
 
     public void register(String email, String password) {

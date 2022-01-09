@@ -1,14 +1,16 @@
 package com.example.ebookapp.viewmodel;
 
+import com.example.ebookapp.LocalDB.model.BookModel;
+
 import java.util.List;
 
 public class Category {
     private String categoryName;
-    private List<Book> bookList;
+    private List<BookModel> bookModelList;
 
-    public Category(String categoryName, List<Book> bookList) {
+    public Category(String categoryName, List<BookModel> bookModelList) {
         this.categoryName = categoryName;
-        this.bookList = bookList;
+        this.bookModelList = bookModelList;
     }
 
     public String getCategoryName() {
@@ -19,11 +21,11 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public List<Book> getBookList() {
-        return bookList;
+    public List<BookModel> getBookList() {
+        return bookModelList;
     }
 
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
+    public void setBookList(List<BookModel> bookModelList) {
+        this.bookModelList = bookModelList;
     }
 }

@@ -1,11 +1,10 @@
-package com.example.ebookapp.auth;
+package com.example.ebookapp.RemoteDB;
 
 import android.app.Application;
 import android.os.Build;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -13,6 +12,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseLogin {
 
@@ -22,6 +22,9 @@ public class FirebaseLogin {
     //This variables uses the live data to determine user' login status.
     private MutableLiveData<FirebaseUser> userLiveData;
     private MutableLiveData<Boolean> loggedOutLiveData;
+    private MutableLiveData<Boolean> isComeFromRegister;
+
+    private FirebaseDatabase mRealtimeDB;
 
     //Constructor func.
     public FirebaseLogin(Application application){
@@ -31,12 +34,30 @@ public class FirebaseLogin {
         this.mAuth = FirebaseAuth.getInstance();
         this.userLiveData = new MutableLiveData<>();
         this.loggedOutLiveData = new MutableLiveData<>();
+        this.isComeFromRegister = new MutableLiveData<>();
+        this.mRealtimeDB = FirebaseDatabase.getInstance();
+
 
         //If user has logged the system, user uid will add the userLiveData array.
         if(mAuth.getCurrentUser() != null){
             userLiveData.postValue(mAuth.getCurrentUser());
+            isComeFromRegister.postValue(false);
             loggedOutLiveData.postValue(false);
         }
+
+    }
+
+    //This function adds user to realtime db.
+    public void add_user_to_realtime_db(String fullname,String email,String uid){
+
+        try {
+            mRealtimeDB.getReference().child("users").child(uid).child("Fullname").setValue(fullname);
+            mRealtimeDB.getReference().child("users").child(uid).child("Email").setValue(email);
+
+        }catch (NullPointerException exception){
+            Toast.makeText(application.getApplicationContext(), "Kullanıcının hesabı açılamadı " + exception.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
 
     }
 
@@ -71,14 +92,18 @@ public class FirebaseLogin {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 userLiveData.postValue(mAuth.getCurrentUser());
-                                Toast.makeText(application.getApplicationContext(),"Kayıt Başarıyla oluşturuldu. ",Toast.LENGTH_SHORT).show();
-
+                                setIsComeFromRegister(true);
                             } else {
                                 Toast.makeText(application.getApplicationContext(), "Registration Failure: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                             }
                         }
                     });
         }
+    }
+
+    public void setIsComeFromRegister(Boolean bool){
+
+        this.isComeFromRegister.postValue(bool);
     }
 
     //If user want to quit from system, this func will use.
@@ -97,6 +122,7 @@ public class FirebaseLogin {
         return loggedOutLiveData;
     }
 
+    public MutableLiveData<Boolean> getIsComeFromRegister(){ return isComeFromRegister;}
 
 
 }

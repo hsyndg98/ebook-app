@@ -2,25 +2,21 @@ package com.example.ebookapp.view;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.Toast;
 
+import com.example.ebookapp.LocalDB.model.BookModel;
 import com.example.ebookapp.R;
-import com.example.ebookapp.databinding.FragmentLoginBinding;
 import com.example.ebookapp.databinding.FragmentSearchBinding;
-import com.example.ebookapp.viewmodel.Book;
-import com.example.ebookapp.viewmodel.Category;
-import com.example.ebookapp.viewmodel.HomeAdapter;
+import com.example.ebookapp.viewmodel.BookViewModel;
 import com.example.ebookapp.viewmodel.SearchAdapter;
 
 import java.util.ArrayList;
@@ -30,6 +26,13 @@ public class SearchFragment extends Fragment {
     private RecyclerView rv;
     private SearchAdapter adapter;
     private FragmentSearchBinding binding;
+    private BookViewModel bookViewModel;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        bookViewModel = new ViewModelProvider(this).get(BookViewModel.class);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,13 +40,7 @@ public class SearchFragment extends Fragment {
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-
-
-        List<Book> allBooks = new ArrayList<>();
-        allBooks.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği","Elif Akay"));
-        allBooks.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal","Fatih İzgi"));
-        allBooks.add(new Book(3,R.drawable.kuzularinsesizligi,"Küçük Prens Sessizliği","Elif Akay"));
-        allBooks.add(new Book(4,R.drawable.kuzularinsesizligi, "Dönüşüm","Elif Akay"));
+        List<BookModel> allBooks = bookViewModel.getBookList();
 
         binding.rvResults.setHasFixedSize(true);
         binding.rvResults.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
@@ -58,49 +55,66 @@ public class SearchFragment extends Fragment {
 
 
                 if(isBook){
-                    ArrayList<Book> books = new ArrayList<>();
+                    ArrayList<BookModel> books = new ArrayList<>();
 
 
 
-                    for(Book book : allBooks){
+                    for(BookModel book : allBooks){
 
-                        if(binding.editTextEntered.getText().toString().equals(book.getBookName())){
+                        if(binding.editTextEntered.getText().toString().equals(book.getKitap())){
                             books.add(book);
                         }
                     }
-                    binding.tvResultMessage.setText("Girilen isme ait kitaplar : ");
-                    adapter = new SearchAdapter(getContext(),books);
-                    binding.rvResults.setAdapter(adapter);
+                    if(books.size()!=0){
+                        binding.tvResultMessage.setText("Bulunan Kitaplar :");
+                        adapter = new SearchAdapter(getContext(),books);
+                        binding.rvResults.setAdapter(adapter);
+                    }
+                    else{
+                        binding.tvResultMessage.setText("Aranılan kitap bulunamadı. ");
+                    }
 
                 }
                 if(isAuthor){
-                    ArrayList<Book> books = new ArrayList<>();
+                    ArrayList<BookModel> books = new ArrayList<>();
 
-                    for(Book book : allBooks){
+                    for(BookModel book : allBooks){
 
-                        if(binding.editTextEntered.getText().toString().equals(book.getAuthor())){
+                        if(binding.editTextEntered.getText().toString().equals(book.getYazar())){
                             books.add(book);
                         }
                     }
-                    binding.tvResultMessage.setText("Girilen yazara ait kitaplar : ");
-                    adapter = new SearchAdapter(getContext(),books);
-                    binding.rvResults.setAdapter(adapter);
+                    if(books.size()!=0){
+                        binding.tvResultMessage.setText("Girilen yazara ait kitaplar : ");
+                        adapter = new SearchAdapter(getContext(),books);
+                        binding.rvResults.setAdapter(adapter);
+                    }
+                    else{
+                        binding.tvResultMessage.setText("Girilen yazara ait bir kitap bulunamadı.");
+                    }
+
                 }
                 if(isId){
-                    ArrayList<Book> books = new ArrayList<>();
+                    ArrayList<BookModel> books = new ArrayList<>();
 
-                    for(Book book : allBooks){
+                    for(BookModel book : allBooks){
 
-                        if(binding.editTextEntered.getText().toString().equals(String.valueOf(book.getId()))){
+                        if(binding.editTextEntered.getText().toString().equals(String.valueOf(book.getISBN()))){
 
                             books.add(book);
                         }
                     }
 
-                    binding.tvResultMessage.setText("Girilen ISBN'ye ait kitaplar : ");
+                    if(books.size()!=0){
+                        binding.tvResultMessage.setText("Girilen ISBN'ye ait kitap :");
 
-                    adapter = new SearchAdapter(getContext(),books);
-                    binding.rvResults.setAdapter(adapter);
+                        adapter = new SearchAdapter(getContext(),books);
+                        binding.rvResults.setAdapter(adapter);
+                    }
+                    else{
+                        binding.tvResultMessage.setText("Girilen ISBN'ye ait bir kitap bulunamadı.");
+                    }
+
                 }
                 if(!isBook && !isAuthor && !isId){
                     Toast.makeText(getContext(),"Lütfen bir arama kriteri seçin",Toast.LENGTH_SHORT).show();
@@ -115,6 +129,5 @@ public class SearchFragment extends Fragment {
 
 
         return view;
-
     }
 }

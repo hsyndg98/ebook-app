@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ebookapp.LocalDB.model.BookModel;
 import com.example.ebookapp.R;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MainViewHolder
         return categoryList.size();
     }
 
-    private void setCatItemRecycler(RecyclerView recyclerView, List<Book> bookList){
+    private void setCatItemRecycler(RecyclerView recyclerView, List<BookModel> bookList){
 
         BookAdapter bookRvAdapter = new BookAdapter(mContext,bookList);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext,RecyclerView.HORIZONTAL,false));

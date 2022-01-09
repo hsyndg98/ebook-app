@@ -1,5 +1,6 @@
 package com.example.ebookapp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -8,16 +9,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ebookapp.R;
 import com.example.ebookapp.databinding.FragmentLoginBinding;
+import com.example.ebookapp.utils.UtilsVariables;
 import com.example.ebookapp.viewmodel.LoginViewModel;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -26,7 +25,7 @@ public class LoginFragment extends Fragment {
 
     private LoginViewModel mLoginViewModel;
     private FragmentLoginBinding binding;
-    private FirebaseUser fUser;
+
 
 
     @Override
@@ -35,11 +34,17 @@ public class LoginFragment extends Fragment {
 
         mLoginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
-        Log.e("MESAJ","Registeedan diretk buraya geldi");
+        mLoginViewModel.getUserLiveData().observe(this, new Observer<FirebaseUser>() {
+            @Override
+            public void onChanged(FirebaseUser firebaseUser) {
+                if (!UtilsVariables.isComeFromRegister && firebaseUser != null) {
 
-        mLoginViewModel.getUserLiveData().observe(this, firebaseUser -> {
-            if (firebaseUser != null) {
-                Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_page_navigate);
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
+
+
+                }
+
             }
         });
 
@@ -62,17 +67,22 @@ public class LoginFragment extends Fragment {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String email = binding.etEmail.getText().toString().trim();
+                String sifre = binding.etPassword.getText().toString().trim();
 
-                String password = binding.etPassword.getText().toString().trim();
-                if (email.length() > 0 && password.length() > 0) {
-                    mLoginViewModel.login(email, password);
 
+                if (email.length() > 0 && sifre.length() > 0) {
+                    mLoginViewModel.login(email, sifre);
+                    UtilsVariables.isComeFromRegister = false;
                 } else {
-                    Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_LONG).show();
+
                 }
             }
         });
+
         return view;
     }
 

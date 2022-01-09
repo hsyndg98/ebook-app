@@ -4,18 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/birir/AndroidStudioProjects/ebook-app/app/src/main/res/layout/activity_main.xml" value="0.19746376811594202" />
+
+        <entry key="..\:/Users/birir/AndroidStudioProjects/ebook-app/app/src/main/res/layout/books_card_design.xml" value="0.2" />
         <entry key="..\:/Users/birir/AndroidStudioProjects/ebook-app/app/src/main/res/layout/bos_sayfa.xml" value="0.19746376811594202" />
+        <entry key="..\:/Users/birir/AndroidStudioProjects/ebook-app/app/src/main/res/layout/fragment_account.xml" value="0.21372719374456994" />
+        <entry key="..\:/Users/birir/AndroidStudioProjects/ebook-app/app/src/main/res/layout/fragment_book_details.xml" value="0.10877192982456141" />
+        <entry key="..\:/Users/birir/AndroidStudioProjects/ebook-app/app/src/main/res/layout/fragment_home_page.xml" value="0.16" />
+        <entry key="..\:/Users/birir/AndroidStudioProjects/ebook-app/app/src/main/res/layout/fragment_library.xml" value="0.1" />
         <entry key="..\:/Users/birir/AndroidStudioProjects/ebook-app/app/src/main/res/layout/fragment_login.xml" value="0.11141304347826086" />
         <entry key="..\:/Users/birir/AndroidStudioProjects/ebook-app/app/src/main/res/layout/fragment_register.xml" value="0.19746376811594202" />
-        <entry key="..\:/Users/hsynd/AndroidStudioProjects/EbookApp/app/src/main/res/layout/activity_settings.xml" value="0.22418478260869565" />
-        <entry key="..\:/Users/hsynd/AndroidStudioProjects/EbookApp/app/src/main/res/layout/content_main.xml" value="0.22418478260869565" />
-        <entry key="..\:/Users/hsynd/AndroidStudioProjects/EbookApp/app/src/main/res/layout/fragment_account.xml" value="0.22418478260869565" />
-        <entry key="..\:/Users/hsynd/AndroidStudioProjects/EbookApp/app/src/main/res/layout/fragment_adapter.xml" value="0.20878623188405798" />
-        <entry key="..\:/Users/hsynd/AndroidStudioProjects/EbookApp/app/src/main/res/layout/fragment_home_page.xml" value="0.1" />
-        <entry key="..\:/Users/hsynd/AndroidStudioProjects/EbookApp/app/src/main/res/layout/fragment_library.xml" value="0.22418478260869565" />
-        <entry key="..\:/Users/hsynd/AndroidStudioProjects/EbookApp/app/src/main/res/layout/fragment_search.xml" value="0.4" />
-        <entry key="..\:/Users/hsynd/AndroidStudioProjects/EbookApp/app/src/main/res/menu/home_menu.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/hsynd/AndroidStudioProjects/EbookApp/app/src/main/res/menu/main_menu.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/birir/AndroidStudioProjects/ebook-app/app/src/main/res/layout/fragment_search.xml" value="0.1" />
+
       </map>
     </option>
   </component>

@@ -2,27 +2,23 @@ package com.example.ebookapp.view;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.example.ebookapp.LocalDB.model.BookModel;
 import com.example.ebookapp.R;
 import com.example.ebookapp.databinding.FragmentHomePageBinding;
-import com.example.ebookapp.databinding.FragmentRegisterBinding;
-import com.example.ebookapp.viewmodel.Book;
+import com.example.ebookapp.viewmodel.BookViewModel;
 import com.example.ebookapp.viewmodel.Category;
 import com.example.ebookapp.viewmodel.HomeAdapter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +27,17 @@ public class HomePageFragment extends Fragment {
     private RecyclerView rv;
     private HomeAdapter adapter;
     private FragmentHomePageBinding binding;
+    private BookViewModel bookViewModel;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.e("GELDİFRAGMENT","Activity geldi");
+
+        bookViewModel = new ViewModelProvider(this).get(BookViewModel.class);
+
+
 
     }
 
@@ -47,13 +51,15 @@ public class HomePageFragment extends Fragment {
         View view = binding.getRoot();
 
 
-        List<Book> thriller = new ArrayList<>();
-        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği","Elif Akay"));
-        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal","Elif Akay"));
-        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği","Elif Akay"));
-        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal","Elif Akay"));
-        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği","Elif Akay"));
-        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal","Elif Akay"));
+        List<BookModel> thriller = new ArrayList<>();
+        //Log.e("KİTAPLİST","Size "+bookViewModel.getBookLiveData().getValue().size());
+        //bookViewModel.getBookLiveData().observe(new Observer<>(){
+
+        //});
+        for(BookModel book: bookViewModel.getBookList()){
+            thriller.add(book);
+        }
+
 
         List<Category> categoryList = new ArrayList<>();
 

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".view.LibraryFragment">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCurrentlyReading"
         android:layout_width="match_parent"

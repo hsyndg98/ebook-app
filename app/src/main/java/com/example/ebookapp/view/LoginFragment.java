@@ -42,7 +42,9 @@ public class LoginFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
 
+
                 }
+
             }
         });
 

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_loginFragment_to_adapterFragment"
             app:destination="@id/adapterFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_page_navigate"
+            app:destination="@id/page_navigate" />
 
     </fragment>
     <fragment
@@ -32,6 +35,7 @@
         android:name="com.example.ebookapp.AdapterFragment"
         android:label="fragment_adapter"
         tools:layout="@layout/fragment_adapter" />
+    <include app:graph="@navigation/page_navigate" />
 
 
 </navigation>

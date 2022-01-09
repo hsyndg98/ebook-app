@@ -3,30 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigate"
-    app:startDestination="@id/homePageNavigation">
+    app:startDestination="@id/adapterFragment">
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.ebookapp.view.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_homePageFragment"
-            app:destination="@id/homePageNavigation" />
-        <action
             android:id="@+id/action_loginFragment_to_registerFragment2"
             app:destination="@id/registerFragment" />
         <action
-            android:id="@+id/action_homePageFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_homePageFragment_to_libraryFragment"
-            app:destination="@id/libraryFragment" />
-        <action
-            android:id="@+id/action_homePageFragment_to_accountFragment"
-            app:destination="@id/accountFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_homePageFragment2"
-            app:destination="@id/homePageFragment" />
+            android:id="@+id/action_loginFragment_to_adapterFragment"
+            app:destination="@id/adapterFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -38,32 +28,10 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homePageNavigation"
-        android:name="com.example.ebookapp.view.HomePageFragment"
-        android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.ebookapp.view.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
-    <fragment
-        android:id="@+id/libraryFragment"
-        android:name="com.example.ebookapp.view.LibraryFragment"
-        android:label="fragment_library"
-        tools:layout="@layout/fragment_library" />
-    <fragment
-        android:id="@+id/accountFragment"
-        android:name="com.example.ebookapp.view.AccountFragment"
-        android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
-    <fragment
-        android:id="@+id/homePageFragment"
-        android:name="com.example.ebookapp.view.HomePageFragment"
-        android:label="fragment_account"
-        tools:layout="@layout/fragment_home_page" >
-        <action
-            android:id="@+id/action_homePageFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        android:id="@+id/adapterFragment"
+        android:name="com.example.ebookapp.AdapterFragment"
+        android:label="fragment_adapter"
+        tools:layout="@layout/fragment_adapter" />
+
+
 </navigation>

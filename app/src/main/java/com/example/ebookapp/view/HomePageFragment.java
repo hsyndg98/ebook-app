@@ -46,42 +46,14 @@ public class HomePageFragment extends Fragment {
         binding = FragmentHomePageBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
 
-        binding.bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment = null;
-                switch (item.getItemId()) {
-                    case R.id.homePageNavigation:
-                        // Switch to page one
-                        Navigation.findNavController(getView()).navigate(R.id.homePageNavigation);
-                        break;
-                    case R.id.searchFragment:
-                        Navigation.findNavController(getView()).navigate(R.id.searchFragment);
-                        break;
-                    case R.id.libraryFragment:
-                        Navigation.findNavController(getView()).navigate(R.id.libraryFragment);
-                        break;
-                    case R.id.accountFragment:
-                        Navigation.findNavController(getView()).navigate(R.id.accountFragment);
-                        break;
 
-                }
-
-                return true;
-                }
-
-        });
-
-
-
-                List<Book> thriller = new ArrayList<>();
-        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği"));
-        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal"));
-        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği"));
-        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal"));
-        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği"));
-        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal"));
-
+        List<Book> thriller = new ArrayList<>();
+        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği","Elif Akay"));
+        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal","Elif Akay"));
+        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği","Elif Akay"));
+        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal","Elif Akay"));
+        thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği","Elif Akay"));
+        thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal","Elif Akay"));
 
         List<Category> categoryList = new ArrayList<>();
 

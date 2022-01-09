@@ -63,6 +63,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String email = binding.etEmail.getText().toString().trim();
+
                 String password = binding.etPassword.getText().toString().trim();
                 if (email.length() > 0 && password.length() > 0) {
                     mLoginViewModel.login(email, password);

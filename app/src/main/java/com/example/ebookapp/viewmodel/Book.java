@@ -3,12 +3,15 @@ package com.example.ebookapp.viewmodel;
 public class Book {
     private int id;
     private String bookName;
+    private String author;
     Integer imageUrl;
 
-    public Book(int id, Integer imageUrl, String bookName) {
+    public Book(int id, Integer imageUrl, String bookName, String author) {
         this.id = id;
         this.bookName = bookName;
         this.imageUrl = imageUrl;
+        this.author = author;
+
     }
 
     public int getId() {
@@ -34,4 +37,13 @@ public class Book {
     public void setImageUrl(Integer imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
 }

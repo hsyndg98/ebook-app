@@ -13,6 +13,7 @@
         android:theme="@style/Theme.EbookApp">
         <activity
             android:name=".view.HomeActivity"
+            android:theme="@style/Theme.EbookApp.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"

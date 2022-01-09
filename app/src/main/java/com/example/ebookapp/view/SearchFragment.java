@@ -2,65 +2,132 @@ package com.example.ebookapp.view;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.ebookapp.LocalDB.model.BookModel;
 import com.example.ebookapp.R;
+import com.example.ebookapp.databinding.FragmentSearchBinding;
+import com.example.ebookapp.viewmodel.BookViewModel;
+import com.example.ebookapp.viewmodel.SearchAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SearchFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class SearchFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SearchFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SearchFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SearchFragment newInstance(String param1, String param2) {
-        SearchFragment fragment = new SearchFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private RecyclerView rv;
+    private SearchAdapter adapter;
+    private FragmentSearchBinding binding;
+    private BookViewModel bookViewModel;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        bookViewModel = new ViewModelProvider(this).get(BookViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
+
+        binding = FragmentSearchBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        List<BookModel> allBooks = bookViewModel.getBookList();
+
+        binding.rvResults.setHasFixedSize(true);
+        binding.rvResults.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
+
+
+        binding.buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean isBook = binding.rbBook.isChecked();
+                boolean isAuthor = binding.rbAuthor.isChecked();
+                boolean isId = binding.rbId.isChecked();
+
+
+                if(isBook){
+                    ArrayList<BookModel> books = new ArrayList<>();
+
+
+
+                    for(BookModel book : allBooks){
+
+                        if(binding.editTextEntered.getText().toString().equals(book.getKitap())){
+                            books.add(book);
+                        }
+                    }
+                    if(books.size()!=0){
+                        binding.tvResultMessage.setText("Bulunan Kitaplar :");
+                        adapter = new SearchAdapter(getContext(),books);
+                        binding.rvResults.setAdapter(adapter);
+                    }
+                    else{
+                        binding.tvResultMessage.setText("Aranılan kitap bulunamadı. ");
+                    }
+
+                }
+                if(isAuthor){
+                    ArrayList<BookModel> books = new ArrayList<>();
+
+                    for(BookModel book : allBooks){
+
+                        if(binding.editTextEntered.getText().toString().equals(book.getYazar())){
+                            books.add(book);
+                        }
+                    }
+                    if(books.size()!=0){
+                        binding.tvResultMessage.setText("Girilen yazara ait kitaplar : ");
+                        adapter = new SearchAdapter(getContext(),books);
+                        binding.rvResults.setAdapter(adapter);
+                    }
+                    else{
+                        binding.tvResultMessage.setText("Girilen yazara ait bir kitap bulunamadı.");
+                    }
+
+                }
+                if(isId){
+                    ArrayList<BookModel> books = new ArrayList<>();
+
+                    for(BookModel book : allBooks){
+
+                        if(binding.editTextEntered.getText().toString().equals(String.valueOf(book.getISBN()))){
+
+                            books.add(book);
+                        }
+                    }
+
+                    if(books.size()!=0){
+                        binding.tvResultMessage.setText("Girilen ISBN'ye ait kitap :");
+
+                        adapter = new SearchAdapter(getContext(),books);
+                        binding.rvResults.setAdapter(adapter);
+                    }
+                    else{
+                        binding.tvResultMessage.setText("Girilen ISBN'ye ait bir kitap bulunamadı.");
+                    }
+
+                }
+                if(!isBook && !isAuthor && !isId){
+                    Toast.makeText(getContext(),"Lütfen bir arama kriteri seçin",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
+
+
+
+
+        return view;
     }
 }

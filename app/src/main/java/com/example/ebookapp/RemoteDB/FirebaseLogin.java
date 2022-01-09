@@ -1,11 +1,10 @@
-package com.example.ebookapp.auth;
+package com.example.ebookapp.RemoteDB;
 
 import android.app.Application;
 import android.os.Build;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +22,7 @@ public class FirebaseLogin {
     //This variables uses the live data to determine user' login status.
     private MutableLiveData<FirebaseUser> userLiveData;
     private MutableLiveData<Boolean> loggedOutLiveData;
+    private MutableLiveData<Boolean> isComeFromRegister;
 
     private FirebaseDatabase mRealtimeDB;
 
@@ -34,11 +34,14 @@ public class FirebaseLogin {
         this.mAuth = FirebaseAuth.getInstance();
         this.userLiveData = new MutableLiveData<>();
         this.loggedOutLiveData = new MutableLiveData<>();
+        this.isComeFromRegister = new MutableLiveData<>();
         this.mRealtimeDB = FirebaseDatabase.getInstance();
+
 
         //If user has logged the system, user uid will add the userLiveData array.
         if(mAuth.getCurrentUser() != null){
             userLiveData.postValue(mAuth.getCurrentUser());
+            isComeFromRegister.postValue(false);
             loggedOutLiveData.postValue(false);
         }
 
@@ -89,12 +92,18 @@ public class FirebaseLogin {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 userLiveData.postValue(mAuth.getCurrentUser());
+                                setIsComeFromRegister(true);
                             } else {
                                 Toast.makeText(application.getApplicationContext(), "Registration Failure: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                             }
                         }
                     });
         }
+    }
+
+    public void setIsComeFromRegister(Boolean bool){
+
+        this.isComeFromRegister.postValue(bool);
     }
 
     //If user want to quit from system, this func will use.
@@ -113,6 +122,7 @@ public class FirebaseLogin {
         return loggedOutLiveData;
     }
 
+    public MutableLiveData<Boolean> getIsComeFromRegister(){ return isComeFromRegister;}
 
 
 }

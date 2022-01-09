@@ -4,15 +4,11 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.ebookapp.auth.FirebaseLogin;
-import com.example.ebookapp.data.model.User;
-import com.example.ebookapp.repository.UserRepository;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.ebookapp.RemoteDB.FirebaseLogin;
 
-import java.util.List;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginViewModel extends AndroidViewModel {
 
@@ -20,6 +16,7 @@ public class LoginViewModel extends AndroidViewModel {
     private FirebaseLogin fLogin;
     private MutableLiveData<FirebaseUser> userLiveData;
     private MutableLiveData<Boolean> loggedOutLiveData;
+    private MutableLiveData<Boolean> isComeFromRegister;
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
@@ -27,11 +24,16 @@ public class LoginViewModel extends AndroidViewModel {
         fLogin = new FirebaseLogin(application);
         userLiveData = fLogin.getUserLiveData();
         loggedOutLiveData = fLogin.getLoggedOutLiveData();
+        isComeFromRegister = fLogin.getIsComeFromRegister();
     }
+
+    public void login(String email, String sifre){ fLogin.login(email,sifre); }
 
     public void logOut() {
         fLogin.logOut();
     }
+
+    public MutableLiveData<Boolean> getIsComeFromRegister(){ return isComeFromRegister;}
 
     public MutableLiveData<FirebaseUser> getUserLiveData() {
         return userLiveData;

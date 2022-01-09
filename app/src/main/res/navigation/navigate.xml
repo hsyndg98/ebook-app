@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigate"
-    app:startDestination="@id/login">
+    app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.ebookapp.view.LoginFragment"
@@ -12,9 +12,6 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment2"
             app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_adapterFragment"
-            app:destination="@id/adapterFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -26,9 +23,13 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/adapterFragment"
-        android:name="com.example.ebookapp.AdapterFragment"
-        android:label="fragment_adapter"
-        tools:layout="@layout/fragment_adapter" />
+        android:id="@+id/accountFragment2"
+        android:name="com.example.ebookapp.view.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
 </navigation>

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.ebookapp.R;
 import com.example.ebookapp.databinding.FragmentRegisterBinding;
+import com.example.ebookapp.utils.UtilsVariables;
 import com.example.ebookapp.viewmodel.RegisterViewModel;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -33,9 +34,8 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if (firebaseUser != null) {
-                    //Navigation.findNavController(getView()).navigate(R.id.);
+                    Navigation.findNavController(getView()).navigate(R.id.action_registerFragment_to_loginFragment);
 
-                    Toast.makeText(getContext(),"Bu eMail adresi ile zaten kayıt yaptırılmış.",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -55,17 +55,24 @@ public class RegisterFragment extends Fragment {
 
                 String email = binding.etEmail.getText().toString().trim();
                 String password = binding.etPassword.getText().toString().trim();
+                String password2 = binding.etRepassword.getText().toString().trim();
                 String fullname = binding.etName.getText().toString().trim();
 
                 if (email.length() > 0 && password.length() > 0) {
-                    registerViewModel.register(email, password);
 
-                    registerViewModel.getUserLiveData().observe(getActivity(), new Observer<FirebaseUser>() {
-                        @Override
-                        public void onChanged(FirebaseUser firebaseUser) {
-                            registerViewModel.add_user_to_realtimeDB(fullname,email,registerViewModel.getUserLiveData().getValue().getUid());
-                        }
-                    });
+                    if(password.equals(password2)){
+                        UtilsVariables.isComeFromRegister = true;
+                        registerViewModel.register(email, password);
+
+                        registerViewModel.getUserLiveData().observe(getActivity(), new Observer<FirebaseUser>() {
+                            @Override
+                            public void onChanged(FirebaseUser firebaseUser) {
+                                registerViewModel.add_user_to_realtimeDB(fullname,email,registerViewModel.getUserLiveData().getValue().getUid());
+                            }
+                        });
+                    }else{
+                        Toast.makeText(getContext(),"Password and re-type password didn't matched.",Toast.LENGTH_LONG).show();
+                    }
 
                 } else {
                     Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();

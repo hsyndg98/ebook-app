@@ -31,6 +31,7 @@ public class AccountFragment extends Fragment {
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

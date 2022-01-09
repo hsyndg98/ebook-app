@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homePageNavigation"
+    app:startDestination="@id/accountFragment">
+
+    <fragment
+        android:id="@+id/homePageNavigation"
+        android:name="com.example.ebookapp.view.HomePageFragment"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePageFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_libraryFragment"
+            app:destination="@id/libraryFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.ebookapp.view.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.example.ebookapp.view.LibraryFragment"
+        android:label="fragment_library"
+        tools:layout="@layout/fragment_library" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.ebookapp.view.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+
+</navigation>

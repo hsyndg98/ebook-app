@@ -3,6 +3,7 @@
 
     <item
         android:id="@+id/homePageFragment"
+
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Ana Sayfa" />
     <item

@@ -19,9 +19,6 @@ public class RegisterViewModel extends AndroidViewModel {
         userLiveData = fRegister.getUserLiveData();
     }
 
-    public void login(String email, String password) {
-        fRegister.login(email, password);
-    }
 
     public void add_user_to_realtimeDB(String fullname,String mail, String uid){ fRegister.add_user_to_realtime_db(fullname,mail,uid); }
 
@@ -30,7 +27,4 @@ public class RegisterViewModel extends AndroidViewModel {
         fRegister.register(email, password);
     }
 
-    public MutableLiveData<FirebaseUser> getUserLiveData() {
-        return userLiveData;
-    }
 }

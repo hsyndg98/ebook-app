@@ -71,6 +71,8 @@ public class FirebaseLogin {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 userLiveData.postValue(mAuth.getCurrentUser());
+                                Toast.makeText(application.getApplicationContext(),"Kayıt Başarıyla oluşturuldu. ",Toast.LENGTH_SHORT).show();
+
                             } else {
                                 Toast.makeText(application.getApplicationContext(), "Registration Failure: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                             }

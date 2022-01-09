@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigate"
     app:startDestination="@id/adapterFragment">
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.ebookapp.view.LoginFragment"
@@ -15,6 +16,7 @@
         <action
             android:id="@+id/action_loginFragment_to_adapterFragment"
             app:destination="@id/adapterFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -30,5 +32,6 @@
         android:name="com.example.ebookapp.AdapterFragment"
         android:label="fragment_adapter"
         tools:layout="@layout/fragment_adapter" />
+
 
 </navigation>

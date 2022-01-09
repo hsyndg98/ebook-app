@@ -11,6 +11,7 @@ public class Book {
         this.bookName = bookName;
         this.imageUrl = imageUrl;
         this.author = author;
+
     }
 
     public int getId() {
@@ -44,4 +45,5 @@ public class Book {
     public void setAuthor(String author) {
         this.author = author;
     }
+
 }

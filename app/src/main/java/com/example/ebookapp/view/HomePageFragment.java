@@ -55,7 +55,6 @@ public class HomePageFragment extends Fragment {
         thriller.add(new Book(1,R.drawable.kuzularinsesizligi,"Kuzuların Sessizliği","Elif Akay"));
         thriller.add(new Book(2,R.drawable.kuzularinsesizligi, "Otomatik Portokal","Elif Akay"));
 
-
         List<Category> categoryList = new ArrayList<>();
 
         categoryList.add(new Category("Okumaya Devam Et",thriller));

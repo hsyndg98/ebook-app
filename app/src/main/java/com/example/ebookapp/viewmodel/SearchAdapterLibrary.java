@@ -9,23 +9,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.ebookapp.LocalDB.DB.Book;
-import com.example.ebookapp.LocalDB.DB.BooksInRoom;
-import com.example.ebookapp.LocalDB.model.BookModel;
 import com.example.ebookapp.R;
 
 import java.util.List;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder>{
+public class SearchAdapterLibrary extends RecyclerView.Adapter<com.example.ebookapp.viewmodel.SearchAdapter.SearchViewHolder>{
     private Context mContext;
-    private List<BookModel> bookList;
+    private List<Book> bookList;
 
 
-    public SearchAdapter(Context mContext, List<BookModel> bookList) {
+    public SearchAdapterLibrary(Context mContext, List<Book> bookList) {
         this.mContext = mContext;
         this.bookList = bookList;
     }
@@ -46,21 +43,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @NonNull
     @Override
-    public SearchAdapter.SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new SearchAdapter.SearchViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.books_card_design,parent,false));
+    public com.example.ebookapp.viewmodel.SearchAdapter.SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new com.example.ebookapp.viewmodel.SearchAdapter.SearchViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.books_card_design,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SearchAdapter.SearchViewHolder holder, int position) {
-        Glide.with(mContext).load(bookList.get(position).getResim()).into(holder.bookImage);
-        holder.bookName.setText(bookList.get(position).getKitap());
-        int pozisyon = position;
+    public void onBindViewHolder(@NonNull com.example.ebookapp.viewmodel.SearchAdapter.SearchViewHolder holder, int position) {
+        Glide.with(mContext).load(bookList.get(position).getBookImageURL()).into(holder.bookImage);
+        holder.bookName.setText(bookList.get(position).getBookName());
         holder.buttonLook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                BooksInRoom.bookModel = bookList.get(pozisyon);
-                Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_bookDetailsFragment);
 
             }
         });

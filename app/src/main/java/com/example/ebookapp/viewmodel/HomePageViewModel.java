@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.ebookapp.auth.FirebaseLogin;
+import com.example.ebookapp.RemoteDB.FirebaseLogin;
 import com.google.firebase.auth.FirebaseUser;
 
 public class HomePageViewModel extends AndroidViewModel {

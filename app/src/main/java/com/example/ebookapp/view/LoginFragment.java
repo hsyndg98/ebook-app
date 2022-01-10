@@ -1,6 +1,7 @@
 package com.example.ebookapp.view;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.ebookapp.R;
 import com.example.ebookapp.databinding.FragmentLoginBinding;
 import com.example.ebookapp.utils.UtilsVariables;
+import com.example.ebookapp.viewmodel.BookViewModel;
 import com.example.ebookapp.viewmodel.LoginViewModel;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -25,7 +27,7 @@ public class LoginFragment extends Fragment {
 
     private LoginViewModel mLoginViewModel;
     private FragmentLoginBinding binding;
-
+    private BookViewModel bookViewModel;
 
 
     @Override
@@ -33,16 +35,16 @@ public class LoginFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mLoginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        bookViewModel = new ViewModelProvider(this).get(BookViewModel.class);
 
         mLoginViewModel.getUserLiveData().observe(this, new Observer<FirebaseUser>() {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if (!UtilsVariables.isComeFromRegister && firebaseUser != null) {
 
+                    bookViewModel.getAllBooks();
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
-
-
                 }
 
             }
@@ -85,6 +87,8 @@ public class LoginFragment extends Fragment {
 
         return view;
     }
+
+
 
     @Override
     public void onDestroyView() {

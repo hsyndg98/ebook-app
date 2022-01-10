@@ -2,6 +2,7 @@ package com.example.ebookapp.viewmodel;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -63,11 +65,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                         .getResim())
                 .into(holder.bookImage);
         holder.bookName.setText(bookList.get(position).getKitap());
+        Bundle bundle = new Bundle();
+        bundle.putInt("position",position);
         holder.buttonLook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Navigation.findNavController(view).navigate(R.id.action_homePageFragment_to_bookDetailsFragment);
+
+                Navigation.findNavController(view).navigate(R.id.action_homePageFragment_to_bookDetailsFragment,bundle);
+
             }
         });
     }

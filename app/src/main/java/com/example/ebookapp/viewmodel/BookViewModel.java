@@ -1,9 +1,9 @@
 package com.example.ebookapp.viewmodel;
 
 import android.app.Application;
+import android.app.ProgressDialog;
 
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.ebookapp.LocalDB.model.BookModel;
 import com.example.ebookapp.RemoteDB.FirebaseBook;
@@ -22,6 +22,9 @@ public class BookViewModel extends AndroidViewModel {
 
     public void getAllBooks(){ fBook.getAllBooks();}
 
+
     public List<BookModel> getBookList(){ return fBook.getBookList();}
+
+    public void dowloadBooktoLocal(String firebaseDir,ProgressDialog pd, BookModel bookModel ){ fBook.downloadBooktoLocal(firebaseDir,pd,bookModel);}
 
 }

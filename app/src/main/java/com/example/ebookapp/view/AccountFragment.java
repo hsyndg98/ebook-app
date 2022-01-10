@@ -39,7 +39,7 @@ public class AccountFragment extends Fragment {
         binding = FragmentAccountBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
 
-        binding.btnCikisYap.setOnClickListener(new View.OnClickListener() {
+        binding.btnQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loginViewModel.logOut();

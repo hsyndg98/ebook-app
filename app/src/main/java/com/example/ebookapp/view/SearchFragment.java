@@ -53,15 +53,16 @@ public class SearchFragment extends Fragment {
                 boolean isAuthor = binding.rbAuthor.isChecked();
                 boolean isId = binding.rbId.isChecked();
 
+                ArrayList<BookModel> books = new ArrayList<>();
 
                 if(isBook){
-                    ArrayList<BookModel> books = new ArrayList<>();
 
+                    books = new ArrayList<>();
 
 
                     for(BookModel book : allBooks){
 
-                        if(binding.editTextEntered.getText().toString().equals(book.getKitap())){
+                        if(binding.editTextEntered.getText().toString().equalsIgnoreCase(book.getKitap())){
                             books.add(book);
                         }
                     }
@@ -72,15 +73,17 @@ public class SearchFragment extends Fragment {
                     }
                     else{
                         binding.tvResultMessage.setText("Aranılan kitap bulunamadı. ");
+                        adapter = new SearchAdapter(getContext(),books);
+                        binding.rvResults.setAdapter(adapter);
                     }
 
                 }
                 if(isAuthor){
-                    ArrayList<BookModel> books = new ArrayList<>();
+                    books = new ArrayList<>();
 
                     for(BookModel book : allBooks){
 
-                        if(binding.editTextEntered.getText().toString().equals(book.getYazar())){
+                        if(binding.editTextEntered.getText().toString().equalsIgnoreCase(book.getYazar())){
                             books.add(book);
                         }
                     }
@@ -91,11 +94,13 @@ public class SearchFragment extends Fragment {
                     }
                     else{
                         binding.tvResultMessage.setText("Girilen yazara ait bir kitap bulunamadı.");
+                        adapter = new SearchAdapter(getContext(),books);
+                        binding.rvResults.setAdapter(adapter);
                     }
 
                 }
                 if(isId){
-                    ArrayList<BookModel> books = new ArrayList<>();
+                    books = new ArrayList<>();
 
                     for(BookModel book : allBooks){
 
@@ -113,6 +118,8 @@ public class SearchFragment extends Fragment {
                     }
                     else{
                         binding.tvResultMessage.setText("Girilen ISBN'ye ait bir kitap bulunamadı.");
+                        adapter = new SearchAdapter(getContext(),books);
+                        binding.rvResults.setAdapter(adapter);
                     }
 
                 }

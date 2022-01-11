@@ -1,35 +1,24 @@
 package com.example.ebookapp.view;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.room.RoomDatabase;
 
 import com.bumptech.glide.Glide;
-import com.example.ebookapp.LocalDB.DB.Book;
-import com.example.ebookapp.LocalDB.DB.BookDatabase;
-import com.example.ebookapp.LocalDB.DB.BooksInRoom;
-import com.example.ebookapp.LocalDB.model.BookModel;
+import com.example.ebookapp.repository.LocalDB.DB.Book;
+import com.example.ebookapp.repository.LocalDB.DB.BooksInRoom;
+import com.example.ebookapp.repository.LocalDB.model.BookModel;
 import com.example.ebookapp.R;
 import com.example.ebookapp.databinding.FragmentBookDetailsBinding;
 import com.example.ebookapp.viewmodel.BookViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.lang.ref.WeakReference;
-import java.util.List;
 
 public class BookDetailsFragment extends Fragment {
 
@@ -44,10 +33,6 @@ public class BookDetailsFragment extends Fragment {
     private String firebaseDir;
     private ProgressDialog pd;
 
-
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,8 +45,6 @@ public class BookDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         navBar.setVisibility(View.INVISIBLE);
-
-
 
         if(getArguments() != null){
             position = getArguments().getInt("position");
@@ -112,7 +95,6 @@ public class BookDetailsFragment extends Fragment {
     public void downloadBook() {
 
 
-
         firebaseDir = "books/" + book.getId() + ".txt";
         String bookName = book.getKitap();
 
@@ -149,12 +131,6 @@ public class BookDetailsFragment extends Fragment {
 
         }
 
-
-
-
-
     }
-
-
 
 }

@@ -13,8 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.ebookapp.LocalDB.model.BookModel;
-import com.example.ebookapp.R;
+import com.example.ebookapp.repository.LocalDB.model.BookModel;
 import com.example.ebookapp.databinding.FragmentSearchBinding;
 import com.example.ebookapp.viewmodel.BookViewModel;
 import com.example.ebookapp.viewmodel.SearchAdapter;

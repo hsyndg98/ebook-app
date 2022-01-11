@@ -1,4 +1,4 @@
-package com.example.ebookapp.LocalDB.model;
+package com.example.ebookapp.repository.LocalDB.model;
 
 public class BookModel {
 

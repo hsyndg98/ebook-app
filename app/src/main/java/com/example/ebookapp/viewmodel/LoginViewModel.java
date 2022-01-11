@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.ebookapp.RemoteDB.FirebaseLogin;
+import com.example.ebookapp.repository.RemoteDB.FirebaseLogin;
 
 import com.google.firebase.auth.FirebaseUser;
 

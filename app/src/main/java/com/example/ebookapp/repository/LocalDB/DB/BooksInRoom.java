@@ -1,7 +1,7 @@
-package com.example.ebookapp.LocalDB.DB;
+package com.example.ebookapp.repository.LocalDB.DB;
 
 
-import com.example.ebookapp.LocalDB.model.BookModel;
+import com.example.ebookapp.repository.LocalDB.model.BookModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,4 +12,5 @@ public class BooksInRoom {
     public static List<Book> booksInRoom = new ArrayList<>();
 
     public static BookModel bookModel = null;
+
 }

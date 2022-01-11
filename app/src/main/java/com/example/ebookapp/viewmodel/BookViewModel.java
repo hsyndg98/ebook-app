@@ -5,8 +5,8 @@ import android.app.ProgressDialog;
 
 import androidx.lifecycle.AndroidViewModel;
 
-import com.example.ebookapp.LocalDB.model.BookModel;
-import com.example.ebookapp.RemoteDB.FirebaseBook;
+import com.example.ebookapp.repository.LocalDB.model.BookModel;
+import com.example.ebookapp.repository.RemoteDB.FirebaseBook;
 
 import java.util.List;
 

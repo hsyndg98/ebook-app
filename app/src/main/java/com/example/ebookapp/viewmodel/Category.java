@@ -1,6 +1,6 @@
 package com.example.ebookapp.viewmodel;
 
-import com.example.ebookapp.LocalDB.model.BookModel;
+import com.example.ebookapp.repository.LocalDB.model.BookModel;
 
 import java.util.List;
 

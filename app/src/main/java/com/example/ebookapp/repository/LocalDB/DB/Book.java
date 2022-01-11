@@ -1,4 +1,4 @@
-package com.example.ebookapp.LocalDB.DB;
+package com.example.ebookapp.repository.LocalDB.DB;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

@@ -9,11 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.ebookapp.LocalDB.DB.Book;
+import com.example.ebookapp.repository.LocalDB.DB.Book;
 import com.example.ebookapp.R;
+import com.example.ebookapp.repository.LocalDB.DB.BooksInRoom;
+import com.example.ebookapp.repository.LocalDB.model.BookModel;
 
 import java.util.List;
 
@@ -51,10 +54,12 @@ public class SearchAdapterLibrary extends RecyclerView.Adapter<com.example.ebook
     public void onBindViewHolder(@NonNull com.example.ebookapp.viewmodel.SearchAdapter.SearchViewHolder holder, int position) {
         Glide.with(mContext).load(bookList.get(position).getBookImageURL()).into(holder.bookImage);
         holder.bookName.setText(bookList.get(position).getBookName());
+        int pozisyon = position;
         holder.buttonLook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+//                BooksInRoom.bookModel = new BookModel(1,bookList.get(pozisyon).getBookName(),);
+//                Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_bookDetailsFragment);
             }
         });
     }

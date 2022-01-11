@@ -3,10 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
-    android:backgroundTint="@color/white"
-    tools:context=".view.ListeningFragment">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarListening"
@@ -14,7 +11,7 @@
         app:title="BACK"
         app:titleTextColor="@color/white"
         app:navigationIcon="@drawable/back_button"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,37 +20,97 @@
     <ImageView
         android:id="@+id/imageViewBookPhoto"
         android:layout_width="match_parent"
-        android:layout_height="430dp"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/kuzularinsesizligi"
+        android:layout_height="360dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarListening"
+        app:srcCompat="@drawable/kuzularinsesizligi" />
 
     <TextView
         android:id="@+id/tvBookName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="Kuzuların Sessizliği"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewBookPhoto"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewBookPhoto" />
 
     <ImageView
-        android:id="@+id/imgListenBook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/unknown"
+        android:id="@+id/ivStop"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toStartOf="@+id/ivFaster"
+        app:layout_constraintStart_toEndOf="@+id/ivSlower"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBookPhoto"
+        app:srcCompat="@drawable/ic_baseline_stop_24" />
+
+    <ImageView
+        android:id="@+id/ivPlay"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/ivFaster"
+        app:layout_constraintStart_toEndOf="@+id/ivSlower"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBookPhoto"
+        app:srcCompat="@drawable/ic_baseline_play_circle_24" />
+
+    <ImageView
+        android:id="@+id/ivFaster"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBookPhoto"
+        app:srcCompat="@drawable/ic_baseline_fast_forward_24" />
+
+    <ImageView
+        android:id="@+id/ivSlower"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="65dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBookPhoto"
+        app:srcCompat="@drawable/ic_baseline_fast_rewind_24" />
+
+    <ImageView
+        android:id="@+id/ivTimer"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBookName" />
+        app:srcCompat="@drawable/ic_baseline_timer_24" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="Ne zaman duracağını sen belirle"
+        app:layout_constraintBottom_toTopOf="@+id/ivTimer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivStop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

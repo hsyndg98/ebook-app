@@ -3,7 +3,6 @@ package com.example.ebookapp.view;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
@@ -12,16 +11,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.ebookapp.LocalDB.DB.Book;
-import com.example.ebookapp.LocalDB.DB.BookDatabase;
-import com.example.ebookapp.LocalDB.DB.BooksInRoom;
+import com.example.ebookapp.repository.LocalDB.DB.Book;
+import com.example.ebookapp.repository.LocalDB.DB.BookDatabase;
+import com.example.ebookapp.repository.LocalDB.DB.BooksInRoom;
 import com.example.ebookapp.R;
-import com.example.ebookapp.viewmodel.BookViewModel;
-import com.example.ebookapp.viewmodel.RegisterViewModel;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {

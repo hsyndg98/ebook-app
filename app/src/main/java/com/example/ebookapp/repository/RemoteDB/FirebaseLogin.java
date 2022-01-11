@@ -1,4 +1,4 @@
-package com.example.ebookapp.RemoteDB;
+package com.example.ebookapp.repository.RemoteDB;
 
 import android.app.Application;
 import android.os.Build;

@@ -1,4 +1,4 @@
-package com.example.ebookapp.LocalDB.DB;
+package com.example.ebookapp.repository.LocalDB.DB;
 
 import android.content.Context;
 
@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.ebookapp.LocalDB.Dao.BookDao;
+import com.example.ebookapp.repository.LocalDB.Dao.BookDao;
 
 @Database(entities = Book.class,exportSchema = false,version = 1)
 public abstract class BookDatabase extends RoomDatabase {

@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ebookapp.LocalDB.model.BookModel;
+import com.example.ebookapp.repository.LocalDB.model.BookModel;
 import com.example.ebookapp.R;
 
 import java.util.List;

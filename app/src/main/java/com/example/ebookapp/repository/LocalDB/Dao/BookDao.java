@@ -1,4 +1,4 @@
-package com.example.ebookapp.LocalDB.Dao;
+package com.example.ebookapp.repository.LocalDB.Dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.ebookapp.LocalDB.DB.Book;
+import com.example.ebookapp.repository.LocalDB.DB.Book;
 
 import java.util.List;
 

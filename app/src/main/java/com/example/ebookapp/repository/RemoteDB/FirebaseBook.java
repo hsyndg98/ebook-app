@@ -1,41 +1,28 @@
-package com.example.ebookapp.RemoteDB;
-
-import static android.content.ContentValues.TAG;
+package com.example.ebookapp.repository.RemoteDB;
 
 import android.app.Application;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
-import androidx.navigation.Navigation;
 
-import com.example.ebookapp.LocalDB.DB.Book;
-import com.example.ebookapp.LocalDB.DB.BookDatabase;
-import com.example.ebookapp.LocalDB.DB.BooksInRoom;
-import com.example.ebookapp.LocalDB.Dao.BookDao;
-import com.example.ebookapp.LocalDB.model.BookModel;
-import com.example.ebookapp.R;
-import com.example.ebookapp.viewmodel.BookViewModel;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.ebookapp.repository.LocalDB.DB.Book;
+import com.example.ebookapp.repository.LocalDB.DB.BookDatabase;
+import com.example.ebookapp.repository.LocalDB.DB.BooksInRoom;
+import com.example.ebookapp.repository.LocalDB.model.BookModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +36,8 @@ public class FirebaseBook {
     public FirebaseBook(Application application){
 
         mRealtimeDatabase = FirebaseDatabase.getInstance();
-        mStorage = FirebaseStorage.getInstance();
+        mStorage = FirebaseStorage
+                .getInstance();
         this.application = application;
 
     }

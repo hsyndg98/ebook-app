@@ -13,9 +13,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.ebookapp.LocalDB.DB.Book;
-import com.example.ebookapp.LocalDB.DB.BooksInRoom;
-import com.example.ebookapp.LocalDB.model.BookModel;
+import com.example.ebookapp.repository.LocalDB.DB.BooksInRoom;
+import com.example.ebookapp.repository.LocalDB.model.BookModel;
 import com.example.ebookapp.R;
 
 import java.util.List;
